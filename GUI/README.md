@@ -1,4 +1,4 @@
-# Rif Fracture
+# GUI for rib fracture detection
 
 
 

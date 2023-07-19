@@ -6,7 +6,8 @@ In order for pathologists to gain access to the trained model for rib fracture d
 
 ```mermaid
 graph LR
-A[input image] -- run prediction --> B[select class]
-B[choose an image] -- adjust certainty --> B[select class]
-B --> D((output image))
+A[input image] --> B{run prediction} 
+B  --> C{select class}
+C -- adjust certainty --> C
+C --> D[output image]
 ```

@@ -14,13 +14,13 @@ Victor Ibañez
 import cv2
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.preprocessing import image
 from tensorflow.keras.preprocessing.image import array_to_img
-from tensorflow.keras import optimizers
+from tensorflow.keras.optimizers import Adam 
+from tensorflow.keras.metrics import Precision, Recall
 import os
-import matplotlib.pyplot as plt
 import gradio as gr
 from sklearn.metrics import f1_score
+from matplotlib import cm,colors
 
 # --------------------------------------------------------------------
 # FUNCTIONS
@@ -78,16 +78,16 @@ def predict(small_img_list, model):
 
 
 def transparency_func(value):
-    if value > 0 and value <= 0.2:
-        return 0.05
-    if value > 0.2 and value <= 0.4:
-        return 0.15
-    if value > 0.4 and value <= 0.6:
-        return 0.25
-    if value > 0.6 and value <= 0.8:
-        return 0.35
-    if value > 0.8 and value <= 1:
-        return 0.5  
+    if value > 0.5 and value <= 0.6:
+        return 0.35, cm.viridis(norm(value),bytes=True) 
+    if value > 0.6 and value <= 0.7:
+        return 0.35, cm.viridis(norm(value),bytes=True) 
+    if value > 0.7 and value <= 0.8:
+        return 0.35, cm.viridis(norm(value),bytes=True) 
+    if value > 0.8 and value <= 0.9:
+        return 0.35, cm.viridis(norm(value),bytes=True) 
+    if value > 0.9:
+        return 0.35 , cm.viridis(norm(value),bytes=True) 
 
 
 def create_mask(resized, results, results_prob, coord_list):
@@ -98,12 +98,11 @@ def create_mask(resized, results, results_prob, coord_list):
 
         prob_masks = []
 
-        for p in range(0,10,1):
+        for p in range(5,10,1):
 
-            legend_nbs = [0.15,0.25,0.35,0.45,0.6]
+            legend_nbs = np.linspace(0.501,1,5)
             img_to_process = resized.copy()
             overlay = resized.copy()
-            current_color_fill = color_list_fill[nb]
             rows = resized.shape[1]
             row = 0
             for r in range(len(results)):
@@ -113,35 +112,35 @@ def create_mask(resized, results, results_prob, coord_list):
                     
                 m,n = coord_list[r][0],coord_list[r][1]
                 
-                if results[r] == nb and results_prob[r][nb] > (p*0.1):  
+                if results_prob[r][nb] > (p*0.1):  #if results[r] == nb and results_prob[r][nb] > (p*0.1):  
                     
                     sub_img = overlay[m:m+99,n:n+99]
                     current_rect = np.ones(sub_img.shape, dtype=np.uint8)
-                    current_rect[0:99,0:99] = current_color_fill
                     current_prob = results_prob[r][nb]
-                    current_alpha = transparency_func(current_prob)
+                    current_alpha,current_color_fill_rgb = transparency_func(current_prob)
+                    current_rect[0:99,0:99] = current_color_fill_rgb[:3]
                     add = cv2.addWeighted(sub_img,0.5,current_rect,current_alpha,0)
                     img_to_process[m:m+99,n:n+99] = add
 
+            
             # Add legend with probabilities
             y_start = 50
             quad_size = 50 
-            x_start = 1500
+            x_start = 1300
             y_start = 40
             x_shift = 60
             y_shift = 0
-            cv2.putText(img_to_process, 'probability: 0', (x_start-460, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 4, cv2.LINE_AA, False)
+            cv2.putText(img_to_process, '0.5', (x_start-180, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 4, cv2.LINE_AA, False)
             cv2.putText(img_to_process, '1', (x_start+350, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 4, cv2.LINE_AA, False)
 
             for n_iter,legend_nb in enumerate(legend_nbs):
                 sub_img = overlay[y_start+(n_iter*y_shift):y_start+quad_size+(n_iter*y_shift), x_start+(n_iter*x_shift):x_start+quad_size+(n_iter*x_shift)]
                 current_rect = np.ones(sub_img.shape, dtype=np.uint8)
-                current_rect[0:quad_size,0:quad_size] = current_color_fill
-                #current_alpha = transparency_func(legend_nb)
+                current_alpha,current_color_fill_rgb = transparency_func(legend_nb)
+                current_rect[0:quad_size,0:quad_size] = current_color_fill_rgb[:3]
                 add = cv2.addWeighted(sub_img,0.5,current_rect,legend_nb,0)
                 img_to_process[y_start+(n_iter*y_shift):y_start+quad_size+(n_iter*y_shift), x_start+(n_iter*x_shift):x_start+quad_size+(n_iter*x_shift)] = add
-                #cv2.putText(img_to_process, f'>= {n_iter/5}', ((x_start+(n_iter*x_shift))+70, (y_start+(n_iter*y_shift))+40), cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 3, cv2.LINE_AA, False)
-
+            
             prob_masks.append(img_to_process)
         all_masks.append(prob_masks)
     
@@ -161,7 +160,8 @@ def classify_image(inp):
     return 'prediction finished.'
 
 def change_img_output_slider(choice,prob):
-    prob_map = [0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9]
+
+    prob_map = [0.5,0.6,0.7,0.8,0.9]
     to_display = prob_map.index(prob)
     
     if choice == "none":
@@ -183,10 +183,7 @@ def change_img_output_slider(choice,prob):
 # --------------------------------------------------------------------
 
 
-# define optimizer
-from tensorflow.keras.optimizers import Adam 
-from tensorflow.keras.metrics import Precision, Recall
-#os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
+norm = colors.Normalize(vmin=0.5, vmax=1)
 learning_rate = 0.00015
 opt = Adam(learning_rate=0.0001)
 loss_type = 'categorical_crossentropy' 
@@ -201,10 +198,9 @@ model.compile(loss=loss_type,
                   optimizer=opt,
                   metrics=[Precision(),Recall(),weighted_f1], run_eagerly=True)
 
-color_list_fill = [(255,102,255),(102,255,102),(102,255,255),(102,102,255),(107,178,255),(255,102,102),(255,171,102)]
-color_list_box = [(255,0,255),(0,255,0),(0,255,255),(0,0,255),(0,128,255),(255,0,0),(234,123,10)]
 classes = ['nondisplaced','displaced_long_cum_dist','displaced_long_cum_cont','no_fracture','displaced_latus']
-
+classes2 = classes.copy()
+classes2.remove('no_fracture')
 
 
 
@@ -218,7 +214,7 @@ with gui:
     Choose an image and press "run prediction" button below:
     """)
 
-    img_file = gr.Image(label="Initial image")
+    img_file = gr.Image(label="Input image")
     
     b1 = gr.Button("run prediction")
     text = gr.Textbox(label="prediction outcome:")
@@ -229,10 +225,10 @@ with gui:
         ["none","no fracture", "nondisplaced", "displaced latus", 
          "displaced longitudinem cum distractione", "displaced longitudinem cum contractione"], label="Classes to display:"
     )
-    slider = gr.Slider(0, 0.9, value=0.5, step=0.1, label="probability")
+    slider = gr.Slider(0.5, 0.9, value=0.5, step=0.1, label="certainty (λ)", info="shows all predictions with a certainty higher than λ")    
     final_mask = gr.Image(label="output image")
     
     slider.change(fn=change_img_output_slider, inputs=[radio,slider], outputs=final_mask)
     radio.change(fn=change_img_output_slider, inputs=[radio,slider], outputs=final_mask)
 
-gui.launch()
+gui.launch(share=True)

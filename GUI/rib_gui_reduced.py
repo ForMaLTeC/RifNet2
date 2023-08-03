@@ -93,8 +93,9 @@ def transparency_func(value):
 def create_mask(resized, results, results_prob, coord_list):
     
     all_masks = []
+    nbs = [[0,1,2],[4],[3]]
 
-    for nb in range(5):
+    for nb in nbs:
 
         prob_masks = []
 
@@ -112,16 +113,16 @@ def create_mask(resized, results, results_prob, coord_list):
                     
                 m,n = coord_list[r][0],coord_list[r][1]
                 
-                if results_prob[r][nb] > (p*0.1):  #if results[r] == nb and results_prob[r][nb] > (p*0.1):  
+                if results[r] in nb and results_prob[r][results[r]] > (p*0.1):  #if results[r] == nb and results_prob[r][nb] > (p*0.1):  
                     
                     sub_img = overlay[m:m+99,n:n+99]
                     current_rect = np.ones(sub_img.shape, dtype=np.uint8)
-                    current_prob = results_prob[r][nb]
+                    current_prob = results_prob[r][results[r]]
                     current_alpha,current_color_fill_rgb = transparency_func(current_prob)
                     current_rect[0:99,0:99] = current_color_fill_rgb[:3]
                     add = cv2.addWeighted(sub_img,0.5,current_rect,current_alpha,0)
                     img_to_process[m:m+99,n:n+99] = add
-
+            
             
             # Add legend with probabilities
             y_start = 50
@@ -153,7 +154,7 @@ def classify_image(inp):
     global results_prob
 
     resized = upscale(inp)
-    small_img_list,coord_list,m,n,mapping_array = sub_divide(resized)
+    small_img_list,coord_list,_,_,_ = sub_divide(resized)
     results,results_prob = predict(small_img_list, model)
     all_masks = create_mask(resized, results, results_prob, coord_list)
     
@@ -166,16 +167,12 @@ def change_img_output_slider(choice,prob):
     
     if choice == "none":
         return resized
-    elif choice == "nondisplaced":
-        return all_masks[4][to_display]
-    elif choice == "displaced latus":
+    elif choice == "displaced":
         return all_masks[0][to_display]
-    elif choice == "displaced longitudinem cum contractione":
+    elif choice == "nondisplaced":
         return all_masks[1][to_display]
-    elif choice == "displaced longitudinem cum distractione":
-        return all_masks[2][to_display]
     else:
-        return all_masks[3][to_display]
+        return all_masks[2][to_display]
 
 
 # --------------------------------------------------------------------
@@ -198,9 +195,9 @@ model.compile(loss=loss_type,
                   optimizer=opt,
                   metrics=[Precision(),Recall(),weighted_f1], run_eagerly=True)
 
-classes = ['nondisplaced','displaced_long_cum_dist','displaced_long_cum_cont','no_fracture','displaced_latus']
-classes2 = classes.copy()
-classes2.remove('no_fracture')
+#classes = ['nondisplaced','displaced','no_fracture']
+#classes2 = classes.copy()
+#classes2.remove('no_fracture')
 
 
 
@@ -222,8 +219,7 @@ with gui:
     b1.click(classify_image, inputs=img_file, outputs=text)
 
     radio = gr.Radio(
-        ["none","no fracture", "nondisplaced", "displaced latus", 
-         "displaced longitudinem cum distractione", "displaced longitudinem cum contractione"], label="Classes to display:"
+        ["none","no fracture", "nondisplaced", "displaced"], label="Classes to display:"
     )
     slider = gr.Slider(0.5, 0.9, value=0.5, step=0.1, label="certainty (λ)", info="shows all predictions with a certainty higher than λ")    
     final_mask = gr.Image(label="output image")

@@ -1,6 +1,8 @@
-# GUI for rib fracture detection
+# GUI for the rib fracture detection algorithm
 
-In order for pathologists to gain access to the trained model for rib fracture detection on PMCT images, we created a simple and user-friendly graphical user interface (GUI). In the following paragraphs, we provide a step-by-step introduction on how to use the GUI.
+In order to get an easy access to our trained model we created a user-friendly graphical user interface (GUI). The GUI allows a user to upload a 2D projection of a PMCT scan of the rib cage and run the model. After processing the scan the GUI will display the different types of fractures and their positions on the rib cage. The processed image can be downloaded with the predictions.
+
+In the following paragraphs, we provide a step-by-step introduction on how to use the GUI.
 
 **Here is a high level flow chart on the general workflow with the GUI:**
 

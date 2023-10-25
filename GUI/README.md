@@ -35,6 +35,15 @@ conda install -c anaconda scikit-learn
 conda install -c conda-forge tensorflow
 conda install -c conda-forge gradio
 ```
+To run the script type
+```
+python rib_gui_reduced.py
+```
+or
+```
+python rib_gui.py
+```
+The model is too large to be stored here and can be accessed upon request.
 
 ## Input image
 

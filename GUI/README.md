@@ -16,9 +16,9 @@ E --> D
 D --> C
 ```
 
-## Installing the appropriate libraries
+## How to run the script
 
-- Use the following command:
+- First install the following librairies:
 
 ```
 conda install -c conda-forge opencv

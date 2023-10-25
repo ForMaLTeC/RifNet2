@@ -43,7 +43,7 @@ or
 ```
 python rib_gui.py
 ```
-The model is too large to be stored here and can be accessed upon request.
+The model *ResNet50_full_model.h5* is too large to be stored here and can be accessed upon request.
 
 ## Input image
 

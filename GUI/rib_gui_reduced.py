@@ -185,7 +185,7 @@ learning_rate = 0.00015
 opt = Adam(learning_rate=0.0001)
 loss_type = 'categorical_crossentropy' 
 
-model_path = '/Users/victor/Desktop/work/Institute_of_Forensic_Medicine/gui_rifnet/ResNet50_full_model.h5'
+model_path = 'ResNet50_full_model.h5'
 
 dependencies = {
     'weighted_f1': weighted_f1

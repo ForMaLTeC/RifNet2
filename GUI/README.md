@@ -16,6 +16,17 @@ E --> D
 D --> C
 ```
 
+## Installing the appropriate libraries
+
+- Use the following command:
+
+```
+conda install -c conda-forge opencv
+conda install -c anaconda scikit-learn
+conda install -c conda-forge tensorflow
+conda install -c conda-forge gradio
+```
+
 ## Input image
 
 The expected input image to the model is a 2D representation created with the Syngo.via rib unfolding tool CT Bone Reading with a size of **1261 × 999** in **.jpg** format.

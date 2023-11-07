@@ -73,3 +73,7 @@ The certainty (λ) of the model can be adjusted with a slider from 0.5 to 1 (def
 ## output image
 
 The output image changes depending on the configurations chosen (class, certainty) and can be downloaded with a click to the icon on the output image (upper right corner).
+
+Sample image with prediction mask:
+
+<img src="https://gitlab.uzh.ch/akos.dobay/rif-fracture/-/edit/master/GUI/gui_prediction_img.png" alt="alt text" width="700" height="500">

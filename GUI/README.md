@@ -76,4 +76,4 @@ The output image changes depending on the configurations chosen (class, certaint
 
 Sample image with prediction mask:
 
-<img src="https://gitlab.uzh.ch/akos.dobay/rif-fracture/-/edit/master/GUI/gui_prediction_img.png" alt="alt text" width="700" height="500">
+<img src="https://gitlab.uzh.ch/akos.dobay/rif-fracture/-/blob/master/GUI/gui_prediction_img.png" alt="alt text" width="700" height="500">

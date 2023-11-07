@@ -76,4 +76,4 @@ The output image changes depending on the configurations chosen (class, certaint
 
 Sample image with prediction mask:
 
-![Semantic description of image](akos.dobay/rif-fracture/-/blob/master/GUI/gui_prediction_img.png "sample image")
+![Semantic description of image](gui_prediction_img.png "sample image")

@@ -23,7 +23,7 @@ D --> C
 A simple way to run the script is to install Anaconda and create a separate environment inside Anaconda to avoid conflicts with other exisiting projects:
 - To create a separate environment using Anaconda type
 ```
-conda create --name YOUR_ENV --python>=3.8
+conda create --name YOUR_ENV python>=3.8
 ```
 (You will need at least Python 3.8)
 

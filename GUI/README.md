@@ -63,12 +63,12 @@ The following radio buttons can be selected:
 - *no fracture*
 - *nondisplaced*
 
-in rib_gui.py:
+    in rib_gui.py:
 - *displaced latus*
 - *displaced longitudinem cum contractione*
 - *displaced longitudinem cum distractione*
 
-in rib_gui_reduced.py:
+    in rib_gui_reduced.py:
 - *displaced*
 
 The output image with an overlapping prediction mask will be displayed.

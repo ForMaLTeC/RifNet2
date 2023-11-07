@@ -62,10 +62,12 @@ The following radio buttons can be selected:
 - *None;* the default image without mask
 - *no fracture*
 - *nondisplaced*
+
 in rib_gui.py:
 - *displaced latus*
 - *displaced longitudinem cum contractione*
 - *displaced longitudinem cum distractione*
+
 in rib_gui_reduced.py:
 - *displaced*
 

@@ -43,7 +43,7 @@ or
 ```
 python rib_gui.py
 ```
-depending on if you want to have also predictions of different displaced fractures (rib_gui.py).
+If you want to have predicions for the different displaced fractures ("ad latus", "ad longitudinem cum contractione", "ad longitudinem cum distractione), use the rib_gui.py file, if you think that the label "displaced" is enough use the rib_gui_reduced.py file.
 
 **The model *ResNet50_full_model.h5* is too large to be stored here and can be accessed upon request.**
 

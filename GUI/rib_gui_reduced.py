@@ -185,7 +185,7 @@ learning_rate = 0.00015
 opt = Adam(learning_rate=0.0001)
 loss_type = 'categorical_crossentropy' 
 
-model_path = '/Users/victor/Desktop/work/Institute_of_Forensic_Medicine/gui_rifnet/ResNet50_full_model.h5'
+model_path = 'ResNet50_full_model.h5'
 
 dependencies = {
     'weighted_f1': weighted_f1
@@ -227,4 +227,4 @@ with gui:
     slider.change(fn=change_img_output_slider, inputs=[radio,slider], outputs=final_mask)
     radio.change(fn=change_img_output_slider, inputs=[radio,slider], outputs=final_mask)
 
-gui.launch(inbrowser=True) #share=True
+gui.launch(share=True)

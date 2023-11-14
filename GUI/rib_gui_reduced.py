@@ -227,4 +227,4 @@ with gui:
     slider.change(fn=change_img_output_slider, inputs=[radio,slider], outputs=final_mask)
     radio.change(fn=change_img_output_slider, inputs=[radio,slider], outputs=final_mask)
 
-gui.launch(share=True)
+gui.launch(inbrowser=True) #share=True

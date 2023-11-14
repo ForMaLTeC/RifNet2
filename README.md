@@ -8,6 +8,7 @@ Conclusion: The model achieved the best performance when the level of hierarchic
 
 ## Overview on workflow and evaluation
 
+![Semantic description of image](fig_1.png "overview image")
 
 ## Authors and acknowledgment
 Victor Ibanez, Dario Jucker, Lars C. Ebert, Sabine Franckenberg, Akos Dobay

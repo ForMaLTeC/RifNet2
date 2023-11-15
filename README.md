@@ -10,7 +10,22 @@ Conclusion: The model achieved the best performance when the level of hierarchic
 
 ![Semantic description of image](Fig 1.png "overview image")
 
-## Authors and acknowledgment
+## Major parts in jupyter notebook
+
+- *Create single dataset:* 
+This part creates a single split dataset of training, (validation) and testing. 
+- *Create crossvalidation dataset:*
+If in *create single dataset* only training and testing data was created, this part splits the training data into k folds for crossvalidation.
+- *Train model in CV to tune hyperparameters:*
+Here, the model is trained with k-fold CV.
+- *Validate the model:*
+Validation of the CV with best accuracy or lowest loss.
+- *Train full model with best hyperparameters and predict on test set:*
+Final training on the full data with best hyperparameters assessed in the CV.
+- *Predict on unseen data:*
+Prediction on the test set and evaluate scores with aggregation and plots.
+
+## Authors
 Victor Ibanez, Dario Jucker, Lars C. Ebert, Sabine Franckenberg, Akos Dobay
 
 ## Publication

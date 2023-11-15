@@ -16,7 +16,7 @@ In the folder **GUI** we provide a user-friendly graphical user interface that a
 
 ## Jupyter notebook Train_val_ribfractures.ipynb
 
-** Major parts in the notebook:**
+**Major parts in the notebook:**
 
 - *Create single dataset:* 
 This part creates a single split dataset of training, (validation) and testing. 

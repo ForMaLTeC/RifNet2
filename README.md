@@ -10,7 +10,11 @@ Conclusion: The model achieved the best performance when the level of hierarchic
 
 ![Semantic description of image](Fig 1.png "overview image")
 
-## Major parts in jupyter notebook
+## Folder GUI
+
+Here, we provide a user-friendly GUI that allows to use the model and make predictions on PMCT images. For further details open the folder and check the README there.
+
+## Major parts in jupyter notebook Train_val_ribfractures.ipynb
 
 - *Create single dataset:* 
 This part creates a single split dataset of training, (validation) and testing. 

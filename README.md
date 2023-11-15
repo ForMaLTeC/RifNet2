@@ -12,7 +12,7 @@ Conclusion: The model achieved the best performance when the level of hierarchic
 
 ## Folder GUI
 
-Here, we provide a user-friendly GUI that allows to use the model and make predictions on PMCT images. For further details see here: https://gitlab.uzh.ch/akos.dobay/rif-fracture/-/tree/master/GUI.
+In the folder **GUI** we provide a user-friendly graphical user interface that allows to use the model and make predictions on PMCT images. For further details see here: https://gitlab.uzh.ch/akos.dobay/rif-fracture/-/tree/master/GUI.
 
 ## Major parts in jupyter notebook Train_val_ribfractures.ipynb
 

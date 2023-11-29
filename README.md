@@ -39,7 +39,7 @@ Prediction on the test set and evaluate scores with aggregation and plots.
 Victor Ibañez, Dario Jucker, Lars C. Ebert, Sabine Franckenberg, Akos Dobay
 
 ## Publication
-DOI
+https://link.springer.com/article/10.1007/s12024-023-00751-x
 
 ## Contact
 akos.dobay@uzh.ch

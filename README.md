@@ -16,7 +16,7 @@ Each volumetric PMCT scan of the rib cage was transformed into a corresponding 2
 
 ## Folder GUI
 
-In the folder **GUI** we provide a user-friendly graphical user interface that allows to use the model and make predictions on PMCT images. For further details see here: https://github.com/ForMaLTeC/RifNet2/tree/master/GUI.
+In the folder **GUI** we provide a user-friendly graphical user interface that allows to use the model and make predictions on PMCT images. For further details see [here](https://github.com/ForMaLTeC/RifNet2/tree/master/GUI).
 
 ## Jupyter notebook Train_val_ribfractures.ipynb
 

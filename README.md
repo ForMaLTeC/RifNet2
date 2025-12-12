@@ -8,7 +8,7 @@ Conclusion: The model achieved the best performance when the level of hierarchic
 
 ## Overview on workflow and evaluation
 
-![Overview figure paper](./Fig 1.png "overview image")
+![Overview figure paper](Fig 1.png "overview image")
 
 **Fig. 1: Workflow of the automated rib fracture classification pipeline**
 Each volumetric PMCT scan of the rib cage was transformed into a corresponding 2D representation. If the representation did not display any fracture (“no fracture”), we collected a series of sample images (each measuring 99×99 pixels) using a sliding window. Then, we randomly drew from a subset of those samples. If the representation displayed rib fractures, we collected a sample at the exact position of the fracture with an additional set of 16 samples. The additional set was obtained using data augmentation by sliding the 99×99-pixel window in each of the four cardinal directions in 10-pixel steps. The samples from the four fracture types and the “no fracture” samples were fed into a ResNet50 architecture for training and testing. We validated the performance of our model on three levels of hierarchical taxonomy: (1) a high-level task where the model distinguished between “fracture” and “no fracture”, (2) a mid-level task to assess how well the model could classify “nondisplaced” and “displaced” fractures, and (3) a low-level task to validate the performance of the model in classifying the three different types of displaced fractures “ad latus” (sideways), “ad longitudinem cum contractione” (in long axis compressed fracture) or “ad longitudinem cum distractione” (in long axis with gap between the fragments).

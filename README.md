@@ -36,7 +36,8 @@ Final training on the full data with best hyperparameters assessed in the CV.
 Prediction on the test set and evaluate scores with aggregation and plots.
 
 ## Authors
-Victor Ibañez, Dario Jucker, Lars C. Ebert, Sabine Franckenberg, Akos Dobay
+Victor Ibañez
+Akos Dobay
 
 ## Publication
 https://link.springer.com/article/10.1007/s12024-023-00751-x

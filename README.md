@@ -35,16 +35,9 @@ Final training on the full data with best hyperparameters assessed in the CV.
 - *Predict on unseen data:*
 Prediction on the test set and evaluate scores with aggregation and plots.
 
-## Contact
-- Please refer to the publication -   DOI: [https://doi.org/10.1007/s12024-023-00751-x](https://doi.org/10.1007/s12024-023-00751-x)
-  
-  and/or
-
-- Contact akos.dobay@uzh.ch or victor.ibanez@uzh.ch
-
 ## Publication
-https://link.springer.com/article/10.1007/s12024-023-00751-x
+- Please refer to the publication -   DOI: [https://doi.org/10.1007/s12024-023-00751-x](https://doi.org/10.1007/s12024-023-00751-x)
 
 ## Contact
-akos.dobay@uzh.ch
+akos.dobay@uzh.ch or victor.ibanez@uzh.ch
 
